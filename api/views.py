@@ -1,23 +1,23 @@
 import json
-from api.models import Joke
-from api.serializers import JokeSerializer
+from api.models import Jokes
+from api.serializers import JokesSerializer
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
 
-class JokeList(APIView):
+class JokesList(APIView):
     """
     List all jokes, or create a new joke.
     """
     def get(self, request, format=None):
-        jokes = Joke.objects.all()
-        serializer = JokeSerializer(jokes, many=True)
+        jokes = Jokes.objects.all()
+        serializer = JokesSerializer(jokes, many=True)
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        serializer = JokeSerializer(data=request.data)
+        serializer = JokesSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -30,18 +30,18 @@ class JokeDetail(APIView):
     """
     def get_joke(self, pk):
         try:
-            return Joke.objects.get(pk=pk)
-        except Joke.DoesNotExist:
+            return Jokes.objects.get(pk=pk)
+        except Jokes.DoesNotExist:
             raise Http404
 
     def get(self, request, pk, format=None):
         joke = self.get_joke(pk)
-        serializer = JokeSerializer(joke)
+        serializer = JokesSerializer(joke)
         return Response(serializer.data)
 
     def put(self, request, pk, format=None):
         joke = self.get_joke(pk)
-        serializer = JokeSerializer(joke, data=request.data)
+        serializer = JokesSerializer(joke, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -53,13 +53,13 @@ class JokeDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class DadJoke(APIView):
+class DadJokes(APIView):
     def get(self, request, format=None):
-        joke = Joke.objects.order_by('?').first()
+        joke = Jokes.objects.order_by('?').first()
         return Response(self.format_joke(joke), status=status.HTTP_200_OK)
 
     def post(self, request, format=None):
-        joke = Joke.objects.order_by('?').first()
+        joke = Jokes.objects.order_by('?').first()
         return Response(self.format_joke(joke), status=status.HTTP_200_OK)
 
     def format_joke(self, joke):
@@ -90,7 +90,7 @@ class Feedback(APIView):
         feedback = json.loads(request.data.get('payload'))
         action = feedback.get('actions')[0]
         # Save feedback
-        joke = Joke.objects.get(pk=feedback['callback_id'])
+        joke = Jokes.objects.get(pk=feedback['callback_id'])
         joke.rating += 1 if action['value'] == 'upvote' else -1
         joke.votes += 1;
         joke.save()

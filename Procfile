@@ -1,1 +1,1 @@
-web: gunicorn dadjoke.wsgi
+web: gunicorn dadjokes.wsgi

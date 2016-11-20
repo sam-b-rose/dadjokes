@@ -1,13 +1,16 @@
 import schedule
 import time
 from threading import Thread
+
 import praw
 import re
+
 import numpy as np
 from gensim import corpora
 from gensim.models import ldamodel, ldamulticore
 
 from django.conf import settings
+
 
 def postpone(function):
     def decorator(*args, **kwargs):
@@ -59,14 +62,14 @@ def get_jokes():
 
 
 def process_jokes(raw_jokes, after):
-    from api.models import Joke
+    from api.models import Jokes
 
     jokes = [clean_joke(joke) for joke in raw_jokes]
-    for joke, is_last in last_flagged(jokes):
+    for joke, is_last in last_joke(jokes):
         if is_last:
             after = joke['name']
-        if not Joke.objects.filter(reddit_id=joke['reddit_id']).exists():
-            Joke(**joke).save()
+        if not Jokes.objects.filter(reddit_id=joke['reddit_id']).exists():
+            Jokes(**joke).save()
     return after
 
 
@@ -81,7 +84,7 @@ def clean_joke(joke):
     }
 
 
-def last_flagged(seq):
+def last_joke(seq):
     seq = iter(seq)
     a = next(seq)
     for b in seq:
@@ -89,11 +92,13 @@ def last_flagged(seq):
         a = b
     yield a, True
 
+# ------------ WIP: Recommendation Learning ------------- # 
+
 
 def fit_data():
-    from api.models import Joke
+    from api.models import Jokes
 
-    jokes = Joke.objects.all()
+    jokes = Jokes.objects.all()
     words_tokens = ['{} {}'.format(
         re.sub('[^0-9a-zA-Z]+', '*', joke.setup.encode('ascii', 'replace')),
         re.sub('[^0-9a-zA-Z]+', '*', joke.punchline.encode('ascii', 'replace'))
