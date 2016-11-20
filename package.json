@@ -1,0 +1,30 @@
+{
+  "name": "dadjoke",
+  "title": "Slack Dad Joke",
+  "version": "1.0.0",
+  "homepage": "https://dadjoke.samrose3.com",
+  "author": "Sam Rose",
+  "license": {
+    "type": "MIT",
+    "url": "https://gitlab.com/samrose3/dadjoke/blob/master/LICENSE.md"
+  },
+  "scripts": {
+    "postinstall": "gulp"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.6.3",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.10",
+    "gulp-cli": "^1.2.2",
+    "gulp-header": "^1.8.7",
+    "gulp-less": "^3.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.4",
+    "jquery": "^1.11.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/samrose3/dadjoke.git"
+  }
+}

@@ -1,0 +1,10 @@
+# SLACK APP CREDENTIALS
+SLACK_CLIENT_ID=[your_client_id]
+SLACK_CLIENT_SECRET=[your_client_secret]
+SLACK_TOKEN=[your_slack_token]
+
+# REDDIT CREDENTIALS
+REDDIT_USERNAME=[your_reddit_username]
+REDDIT_PASSWORD=[your_reddit_password]
+REDDIT_CLIENT_ID=[your_reddit_client_id]
+REDDIT_CLIENT_SECRET=[your_reddit_client_secret]

@@ -1,0 +1,8 @@
+.env
+.idea
+venv
+*.pyc
+*.sqlite3
+staticfiles
+node_modules
+website/static/vendor
