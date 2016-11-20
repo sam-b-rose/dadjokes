@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from api.models import Joke
+from api.models import Jokes
 
 
-class JokeSerializer(serializers.ModelSerializer):
+class JokesSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Joke
+        model = Jokes
         fields = ('id', 'reddit_id', 'setup', 'punchline', 'url', 'rating', 'votes', 'score', 'name', 'created')

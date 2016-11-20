@@ -5,4 +5,4 @@ from django.apps import AppConfig
 
 class WebsiteAppConfig(AppConfig):
     name = 'website'
-    verbose_name = "Dad Joke Website"
+    verbose_name = "Dad Jokes Website"
