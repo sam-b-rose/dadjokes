@@ -4,7 +4,7 @@ from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
 @python_2_unicode_compatible
-class Joke(models.Model):
+class Jokes(models.Model):
     reddit_id = models.CharField(max_length=10, blank=False)
     setup = models.CharField(max_length=500, blank=False)
     punchline = models.TextField(blank=False)

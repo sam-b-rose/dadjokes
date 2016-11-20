@@ -3,8 +3,8 @@ from django.conf import settings
 from django.shortcuts import render
 
 SLACK_AUTH_URL = 'https://slack.com/api/oauth.access'
-REDIRECT_URI = 'https://dadjoke.samrose3.com/auth'
-STATE = 'dadjoke'
+REDIRECT_URI = 'https://dadjokes.samrose3.com/auth'
+STATE = 'dadjokes'
 
 
 def index(request):
