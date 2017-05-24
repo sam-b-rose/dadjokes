@@ -6,11 +6,9 @@ dj-database-url==0.4.1
 Django==1.9.8
 django-dotenv==1.4.1
 djangorestframework==3.3.1
-gensim==0.13.3
 gunicorn==19.6.0
-numpy==1.11.2
-praw==4.0.0b21
-prawcore==0.2.1
+praw==4.5.1
+prawcore==0.10.1
 psycopg2==2.6.2
 requests==2.11.1
 schedule==0.3.2

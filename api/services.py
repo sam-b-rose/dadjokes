@@ -3,11 +3,6 @@ import time
 from threading import Thread
 
 import praw
-import re
-
-import numpy as np
-from gensim import corpora
-from gensim.models import ldamodel, ldamulticore
 
 from django.conf import settings
 
@@ -91,37 +86,3 @@ def last_joke(seq):
         yield a, False
         a = b
     yield a, True
-
-# ------------ WIP: Recommendation Learning ------------- # 
-
-
-def fit_data():
-    from api.models import Jokes
-
-    jokes = Jokes.objects.all()
-    words_tokens = ['{} {}'.format(
-        re.sub('[^0-9a-zA-Z]+', '*', joke.setup.encode('ascii', 'replace')),
-        re.sub('[^0-9a-zA-Z]+', '*', joke.punchline.encode('ascii', 'replace'))
-        ).split('*') for joke in jokes]
-
-    # print(words_tokens)
-    words_dictionary = corpora.Dictionary(words_tokens)
-    words_dictionary.filter_extremes(no_above=0.02)
-    # print(words_dictionary)
-
-    words_corpus = [words_dictionary.doc2bow(tokens) for tokens in words_tokens]
-    # print(words_corpus[0:10])
-
-    words_lda = ldamulticore.LdaModel(corpus=words_corpus, num_topics=10)
-    print('LDA initialization complete')
-    words_lda.save('big_booty_hoes.txt')
-
-    for i in range(10):
-        terms = words_lda.get_topic_terms(i, topn=5)
-        print('[Word Topic %d]' % i)
-        for (key, prob) in terms:
-            print('  %s, %lf' % (words_dictionary.get(key=key), prob))
-
-
-def get_related(joke):
-    pass
