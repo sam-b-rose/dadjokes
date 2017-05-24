@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load staticfiles %}
 
 {% block content %}
 
@@ -10,21 +9,11 @@
         {% csrf_token %}
         <h1 style="margin-top:90px; font-size:50px; margin-bottom:8px">Support</h1>
         <p>Have a question, found a bug, or wish <code>/dadjokes</code> did something more? Let us know!</p>
-
-        <br>
-
-        <input class="form-control input-lg" name="subject" placeholder="Subject (optional)" value="">
-        <br>
-
-        <input class="form-control input-lg" name="email" placeholder="Email" value="">
-        <br>
-
-        <textarea class="input-lg form-control" name="message" placeholder="Your message" rows="10"></textarea>
+        {{ form.as_p }}
         <div class="form-block" style="margin:20px 0">
           <button type="submit" class="btn btn-info btn-lg" style="padding: 10px 30px">Send</button>
         </div>
       </form>
-
     </div>
   </div>
 </div>

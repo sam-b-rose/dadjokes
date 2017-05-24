@@ -1,0 +1,8 @@
+Subject:
+{{ subject }}
+
+Email:
+{{ email }}
+
+Message:
+{{ message|safe|striptags }}
