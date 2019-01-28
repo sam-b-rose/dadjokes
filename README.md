@@ -1,6 +1,8 @@
 # Slack Dad Jokes
 An utterly fantastic Slack integration for classic dad jokes.
 
+> Currently under revision! Updating and making things better 💪
+
 [![Code Climate](https://codeclimate.com/github/samrose3/dadjokes/badges/gpa.svg)](https://codeclimate.com/github/samrose3/dadjokes)
 
 <img alt="Dad Jokes Demo" src="website/static/img/demo-screen-1.png" width="300" />
